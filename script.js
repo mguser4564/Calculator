@@ -148,22 +148,30 @@ function getEquals(){
 
 function Add(num1, num2) {
     result = num1 + num2;
-    Display();
+    display.innerHTML = `${result}`;
+    inputOne = result;
+    inputTwo ='';
 };
 
 function Subtract(num1, num2) {
     result = num1 - num2;
-    Display();
+    display.innerHTML = `${result}`;
+    inputOne = result;
+    inputTwo ='';
 };
 
 function Multiply(num1, num2) {
     result = num1 * num2;
-    Display();
+    display.innerHTML = `${result}`;
+    inputOne = result;
+    inputTwo ='';
 };
 
 function Divide(num1, num2) {
     result = num1 / num2;
-    Display();
+    display.innerHTML = `${result}`;
+    inputOne = result;
+    inputTwo ='';
 };
 
 function Operate(operator, num1, num2) {
@@ -179,7 +187,7 @@ function Operate(operator, num1, num2) {
 };
 
 function Display() {
-    display.innerHTML = `${inputOne}` + `${operator}` + `${inputTwo}` + `${result}`;
+    display.innerHTML = `${inputOne}` + `${operator}` + `${inputTwo}`;
     Clear();
 };
 
