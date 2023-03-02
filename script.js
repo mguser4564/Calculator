@@ -170,7 +170,7 @@ function Multiply(num1, num2) {
 function Divide(num1, num2) {
     result = num1 / num2;
     display.innerHTML = `${result}`;
-    inputOne = result;
+    inputOne = result
     inputTwo ='';
 };
 
@@ -194,7 +194,7 @@ function Display() {
 function Clear() {
     allclear.addEventListener('click', () => {
         display.innerHTML = '';
-        inputOne = '';
+        inputOne = '0';
         inputTwo = '';
         parsedInputOne = '';
         parsedInputTwo = '';
