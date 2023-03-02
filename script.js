@@ -119,24 +119,56 @@ function Keypad() {
 
 function operatorKeypad() {
     add.addEventListener('click', () => {
-        operator = "+"
-        operatorSelected = true;
-        Display();
+        if (operatorSelected === false) {
+            operator = "+"
+            operatorSelected = true;
+            display.innerHTML = `${inputOne}`;
+        }
+        else if (operatorSelected === true) {
+            operator = "+"
+            operatorSelected = false;
+            display.innerHTML = `${inputOne}`;
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        }
     })
     subtract.addEventListener('click', () => {
-        operator = "-"
-        operatorSelected = true;
-        Display();
+        if (operatorSelected === false) {
+            operator = "-"
+            operatorSelected = true;
+            display.innerHTML = `${inputOne}`;
+        }
+        else if (operatorSelected === true) {
+            operator = "-"
+            operatorSelected = false;
+            display.innerHTML = `${inputOne}`;
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        }
     })
     multiply.addEventListener('click', () => {
-        operator = "*"
-        operatorSelected = true;
-        Display();
+        if (operatorSelected === false) {
+            operator = "*"
+            operatorSelected = true;
+            display.innerHTML = `${inputOne}`;
+        }
+        else if (operatorSelected === true) {
+            operator = "*"
+            operatorSelected = false;
+            display.innerHTML = `${inputOne}`;
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        }
     })
     divide.addEventListener('click', () => {
-        operator = "/"
-        operatorSelected = true;
-        Display();
+        if (operatorSelected === false) {
+            operator = "/"
+            operatorSelected = true;
+            display.innerHTML = `${inputOne}`;
+        }
+        else if (operatorSelected === true) {
+            operator = "/"
+            operatorSelected = false;
+            display.innerHTML = `${inputOne}`;
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        }
     })
 };
 
@@ -151,6 +183,7 @@ function Add(num1, num2) {
     display.innerHTML = `${result}`;
     inputOne = result;
     inputTwo ='';
+    operatorSelected = false;
 };
 
 function Subtract(num1, num2) {
@@ -158,6 +191,7 @@ function Subtract(num1, num2) {
     display.innerHTML = `${result}`;
     inputOne = result;
     inputTwo ='';
+    operatorSelected = false;
 };
 
 function Multiply(num1, num2) {
@@ -165,6 +199,7 @@ function Multiply(num1, num2) {
     display.innerHTML = `${result}`;
     inputOne = result;
     inputTwo ='';
+    operatorSelected = false;
 };
 
 function Divide(num1, num2) {
@@ -172,6 +207,7 @@ function Divide(num1, num2) {
     display.innerHTML = `${result}`;
     inputOne = result
     inputTwo ='';
+    operatorSelected = false;
 };
 
 function Operate(operator, num1, num2) {
@@ -187,14 +223,18 @@ function Operate(operator, num1, num2) {
 };
 
 function Display() {
-    display.innerHTML = `${inputOne}` + `${operator}` + `${inputTwo}`;
+    if (operatorSelected === false){
+    display.innerHTML = `${inputOne}`;
+    Clear();} else if (operatorSelected === true){
+        display.innerHTML = `${inputTwo}`;
     Clear();
+    }
 };
 
 function Clear() {
     allclear.addEventListener('click', () => {
         display.innerHTML = '';
-        inputOne = '0';
+        inputOne = '';
         inputTwo = '';
         parsedInputOne = '';
         parsedInputTwo = '';

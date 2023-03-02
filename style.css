@@ -10,16 +10,32 @@ body {
 #subtract,
 #multiply,
 #divide {
+  background-color: #88b609;
+}
+
+#add:hover,
+#subtract:hover,
+#multiply:hover,
+#divide:hover {
   background-color: #98CE00;
 }
 
 #clear,
 #allclear {
-  background-color: #6CCFF6;
+  background-color: #56b8df;
+}
+
+#clear:hover,
+#allclear:hover {
+  background-color: #6ed2f9;
 }
 
 #equal {
-  background-color: #CF0000;
+  background-color: #c90404;
+}
+
+#equal:hover{
+  background-color: #e50303;
 }
 
 .container {
