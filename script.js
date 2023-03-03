@@ -121,7 +121,7 @@ function operatorKeypad() {
     add.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
-        }  else if (operator != "+" && operator != ''){
+        } else if (operator != "+" && operator != '') {
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             operator = "+"
         } else if (inputOne != '' && inputTwo != '') {
@@ -141,11 +141,12 @@ function operatorKeypad() {
                 Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             }
         }
+
     })
     subtract.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
-        }  else if (operator != "-" && operator != ''){
+        } else if (operator != "-" && operator != '') {
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             operator = "-"
         } else if (inputOne != '' && inputTwo != '') {
@@ -169,7 +170,7 @@ function operatorKeypad() {
     multiply.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
-        } else if (operator != "*" && operator != ''){
+        } else if (operator != "*" && operator != '') {
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             operator = "*"
         } else if (inputOne != '' && inputTwo != '') {
@@ -193,7 +194,7 @@ function operatorKeypad() {
     divide.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
-        } else if (operator != "/" && operator != ''){
+        } else if (operator != "/" && operator != '') {
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             operator = "/"
         } else if (inputOne != '' && inputTwo != '') {
@@ -219,6 +220,8 @@ function operatorKeypad() {
 function getEquals() {
     equals.addEventListener('click', () => {
         Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        operatorSelected = false;
+        operator = '';
     })
 }
 
@@ -226,26 +229,30 @@ function Add(num1, num2) {
     result = num1 + num2;
     inputOne = result;
     display.innerHTML = `${inputOne}`;
+    bounceDisplay();
     inputTwo = '';
 };
 
 function Subtract(num1, num2) {
     result = num1 - num2;
-    display.innerHTML = `${result}`;
     inputOne = result;
+    display.innerHTML = `${inputOne}`;
+    bounceDisplay();
     inputTwo = '';
 };
 
 function Multiply(num1, num2) {
     result = num1 * num2;
-    display.innerHTML = `${result}`;
     inputOne = result;
+    display.innerHTML = `${inputOne}`;
+    bounceDisplay();
     inputTwo = '';
 };
 
 function Divide(num1, num2) {
     if (num1 === 0 || num2 === 0) {
         display.innerHTML = `ERROR`;
+        bounceDisplay();
         inputOne = '';
         inputTwo = '';
         operator = '';
@@ -253,8 +260,9 @@ function Divide(num1, num2) {
         operatorSelected = false;
     } else {
         result = num1 / num2;
-        display.innerHTML = `${result}`;
         inputOne = result
+        display.innerHTML = `${inputOne}`;
+        bounceDisplay();
         inputTwo = '';
     }
 };
@@ -276,7 +284,6 @@ function Display() {
         display.innerHTML = `${inputOne}`;
     } else if (operatorSelected === true) {
         display.innerHTML = `${inputTwo}`;
-
     }
 };
 
@@ -291,6 +298,12 @@ function clearDisplay() {
     })
 };
 
+function bounceDisplay() {
+    display.classList.add('bounce');
+    setTimeout(() => {
+        display.classList.remove('bounce');
+    }, 500);
+}
 
 numberKeypad();
 operatorKeypad();

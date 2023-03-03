@@ -69,11 +69,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Center the grid container horizontally */
   align-items: center;
-  /* Center the grid container vertically */
   height: 100vh;
-  /* Set the height of the container to the full viewport height */
+ 
+}
+
+.title{
+
+  font-size: 16px;
 }
 
 .display {
@@ -84,6 +87,26 @@ body {
   margin-bottom: 10px;
   font-size: 36px;
 }
+
+#displayText {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 20px;
+}
+
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 
 .parent {
   display: grid;
