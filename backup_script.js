@@ -8,7 +8,6 @@ const seven = document.getElementById('seven');
 const eight = document.getElementById('eight');
 const nine = document.getElementById('nine');
 const zero = document.getElementById('zero');
-const point = document.getElementById('point');
 
 const add = document.getElementById('add');
 const subtract = document.getElementById('subtract');
@@ -178,21 +177,6 @@ function numberKeypad() {
             Display();
         }
     })
-    point.addEventListener('click', () => {
-        if (operatorSelected == false) {
-            if (equalsPressed === true){
-                inputOne = ''
-                inputOne += "."
-                equalsPressed = false;
-                Display();
-            } else {
-            inputOne += "."
-            Display();}
-        } else {
-            inputTwo += "."
-            Display();
-        }
-    })
 };
 
 function operatorKeypad() {
@@ -211,13 +195,18 @@ function operatorKeypad() {
         // This conditional is for chaining operations together, example 12 + 7 - 5 * 3 = should yield 42
         } else if (operator != "+" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             if (fatalError === false) {
                 operator = "+"
             } else if (fatalError === true) {
                 operator = "";
                 fatalError = false;
             }
+        } else if (inputOne != '' && inputTwo != '') {
+            operator = "+"
+            operatorSelected = true;
+            blinkDisplay();
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
         } else {
             if (operatorSelected === false) {
                 operator = "+"
@@ -226,20 +215,16 @@ function operatorKeypad() {
                 blinkDisplay();
             }
             else if (operatorSelected === true) {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
+                operator = "+"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                blinkDisplay();
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             }
         }
+
     })
     subtract.addEventListener('click', () => {
-        // Runs an error in case the user presses an operator without entering anything
-        // Calc is ready to use as user starts typing in numbers after the ERROR
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
             inputOne = '';
@@ -249,16 +234,20 @@ function operatorKeypad() {
             operatorSelected = false;
             fatalError = false;
             equalsPressed = false;
-        // This conditional is for chaining operations together, example 12 + 7 - 5 * 3 = should yield 42
         } else if (operator != "-" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             if (fatalError === false) {
                 operator = "-"
             } else if (fatalError === true) {
                 operator = "";
                 fatalError = false;
             }
+        } else if (inputOne != '' && inputTwo != '') {
+            operator = "-"
+            operatorSelected = true;
+            blinkDisplay();
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
         } else {
             if (operatorSelected === false) {
                 operator = "-"
@@ -267,20 +256,15 @@ function operatorKeypad() {
                 blinkDisplay();
             }
             else if (operatorSelected === true) {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
+                operator = "-"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                blinkDisplay();
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             }
         }
     })
     multiply.addEventListener('click', () => {
-        // Runs an error in case the user presses an operator without entering anything
-        // Calc is ready to use as user starts typing in numbers after the ERROR
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
             inputOne = '';
@@ -290,16 +274,20 @@ function operatorKeypad() {
             operatorSelected = false;
             fatalError = false;
             equalsPressed = false;
-        // This conditional is for chaining operations together, example 12 + 7 - 5 * 3 = should yield 42
         } else if (operator != "*" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             if (fatalError === false) {
                 operator = "*"
             } else if (fatalError === true) {
                 operator = "";
                 fatalError = false;
             }
+        } else if (inputOne != '' && inputTwo != '') {
+            operator = "*"
+            operatorSelected = true;
+            blinkDisplay();
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
         } else {
             if (operatorSelected === false) {
                 operator = "*"
@@ -308,20 +296,15 @@ function operatorKeypad() {
                 blinkDisplay();
             }
             else if (operatorSelected === true) {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
+                operator = "*"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                blinkDisplay();
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             }
         }
     })
     divide.addEventListener('click', () => {
-        // Runs an error in case the user presses an operator without entering anything
-        // Calc is ready to use as user starts typing in numbers after the ERROR
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
             inputOne = '';
@@ -331,16 +314,20 @@ function operatorKeypad() {
             operatorSelected = false;
             fatalError = false;
             equalsPressed = false;
-        // This conditional is for chaining operations together, example 12 + 7 - 5 * 3 = should yield 42
         } else if (operator != "/" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             if (fatalError === false) {
                 operator = "/"
             } else if (fatalError === true) {
                 operator = "";
                 fatalError = false;
             }
+        } else if (inputOne != '' && inputTwo != '') {
+            operator = "/"
+            operatorSelected = true;
+            blinkDisplay();
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
         } else {
             if (operatorSelected === false) {
                 operator = "/"
@@ -349,14 +336,11 @@ function operatorKeypad() {
                 blinkDisplay();
             }
             else if (operatorSelected === true) {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
+                operator = "/"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                blinkDisplay();
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
             }
         }
     })
@@ -364,7 +348,7 @@ function operatorKeypad() {
 
 function getEquals() {
     equals.addEventListener('click', () => {
-        Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+        Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
         operatorSelected = false;
         operator = '';
         equalsPressed = true;
