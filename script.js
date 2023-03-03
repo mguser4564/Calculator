@@ -21,8 +21,8 @@ const display = document.getElementById('displayText');
 let inputOne = '';
 let inputTwo = '';
 let operator = '';
-let operatorSelected = false;
 let result = ''
+let operatorSelected = false;
 let fatalError = false;
 let equalsPressed = false;
 
@@ -183,6 +183,13 @@ function operatorKeypad() {
     add.addEventListener('click',  () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
+            inputOne = '';
+            inputTwo = '';
+            operator = '';
+            result = '';
+            operatorSelected = false;
+            fatalError = false;
+            equalsPressed = false;
         } else if (operator != "+" && operator != '') {
             blinkDisplay();
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
@@ -217,6 +224,13 @@ function operatorKeypad() {
     subtract.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
+            inputOne = '';
+            inputTwo = '';
+            operator = '';
+            result = '';
+            operatorSelected = false;
+            fatalError = false;
+            equalsPressed = false;
         } else if (operator != "-" && operator != '') {
             blinkDisplay();
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
@@ -250,6 +264,13 @@ function operatorKeypad() {
     multiply.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
+            inputOne = '';
+            inputTwo = '';
+            operator = '';
+            result = '';
+            operatorSelected = false;
+            fatalError = false;
+            equalsPressed = false;
         } else if (operator != "*" && operator != '') {
             blinkDisplay();
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
@@ -283,6 +304,13 @@ function operatorKeypad() {
     divide.addEventListener('click', () => {
         if (inputOne === '') {
             display.innerHTML = `ERROR`;
+            inputOne = '';
+            inputTwo = '';
+            operator = '';
+            result = '';
+            operatorSelected = false;
+            fatalError = false;
+            equalsPressed = false;
         } else if (operator != "/" && operator != '') {
             blinkDisplay();
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
@@ -396,6 +424,7 @@ function clearDisplay() {
         result = '';
         operatorSelected = false;
         fatalError = false;
+        equalsPressed = false;
     })
 };
 
