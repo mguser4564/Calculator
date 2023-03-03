@@ -24,7 +24,7 @@ let operator = '';
 let operatorSelected = false;
 let result = ''
 
-function Keypad() {
+function numberKeypad() {
     one.addEventListener('click', () => {
         if (operatorSelected == false) {
             inputOne += "1"
@@ -119,60 +119,104 @@ function Keypad() {
 
 function operatorKeypad() {
     add.addEventListener('click', () => {
-        if (operatorSelected === false) {
+        if (inputOne === '') {
+            display.innerHTML = `ERROR`;
+        }  else if (operator != "+" && operator != ''){
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            operator = "+"
+        } else if (inputOne != '' && inputTwo != '') {
             operator = "+"
             operatorSelected = true;
-            display.innerHTML = `${inputOne}`;
-        }
-        else if (operatorSelected === true) {
-            operator = "+"
-            operatorSelected = false;
-            display.innerHTML = `${inputOne}`;
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        } else {
+            if (operatorSelected === false) {
+                operator = "+"
+                operatorSelected = true;
+                display.innerHTML = `${inputOne}`;
+            }
+            else if (operatorSelected === true) {
+                operator = "+"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            }
         }
     })
     subtract.addEventListener('click', () => {
-        if (operatorSelected === false) {
+        if (inputOne === '') {
+            display.innerHTML = `ERROR`;
+        }  else if (operator != "-" && operator != ''){
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            operator = "-"
+        } else if (inputOne != '' && inputTwo != '') {
             operator = "-"
             operatorSelected = true;
-            display.innerHTML = `${inputOne}`;
-        }
-        else if (operatorSelected === true) {
-            operator = "-"
-            operatorSelected = false;
-            display.innerHTML = `${inputOne}`;
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        } else {
+            if (operatorSelected === false) {
+                operator = "-"
+                operatorSelected = true;
+                display.innerHTML = `${inputOne}`;
+            }
+            else if (operatorSelected === true) {
+                operator = "-"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            }
         }
     })
     multiply.addEventListener('click', () => {
-        if (operatorSelected === false) {
+        if (inputOne === '') {
+            display.innerHTML = `ERROR`;
+        } else if (operator != "*" && operator != ''){
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            operator = "*"
+        } else if (inputOne != '' && inputTwo != '') {
             operator = "*"
             operatorSelected = true;
-            display.innerHTML = `${inputOne}`;
-        }
-        else if (operatorSelected === true) {
-            operator = "*"
-            operatorSelected = false;
-            display.innerHTML = `${inputOne}`;
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        } else {
+            if (operatorSelected === false) {
+                operator = "*"
+                operatorSelected = true;
+                display.innerHTML = `${inputOne}`;
+            }
+            else if (operatorSelected === true) {
+                operator = "*"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            }
         }
     })
     divide.addEventListener('click', () => {
-        if (operatorSelected === false) {
+        if (inputOne === '') {
+            display.innerHTML = `ERROR`;
+        } else if (operator != "/" && operator != ''){
+            Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            operator = "/"
+        } else if (inputOne != '' && inputTwo != '') {
             operator = "/"
             operatorSelected = true;
-            display.innerHTML = `${inputOne}`;
-        }
-        else if (operatorSelected === true) {
-            operator = "/"
-            operatorSelected = false;
-            display.innerHTML = `${inputOne}`;
             Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+        } else {
+            if (operatorSelected === false) {
+                operator = "/"
+                operatorSelected = true;
+                display.innerHTML = `${inputOne}`;
+            }
+            else if (operatorSelected === true) {
+                operator = "/"
+                operatorSelected = false;
+                display.innerHTML = `${inputOne}`;
+                Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
+            }
         }
     })
 };
 
-function getEquals(){
+function getEquals() {
     equals.addEventListener('click', () => {
         Operate(operator, parseInt(inputOne, 10), parseInt(inputTwo, 10));
     })
@@ -180,38 +224,43 @@ function getEquals(){
 
 function Add(num1, num2) {
     result = num1 + num2;
-    display.innerHTML = `${result}`;
     inputOne = result;
-    inputTwo ='';
-    operatorSelected = false;
+    display.innerHTML = `${inputOne}`;
+    inputTwo = '';
 };
 
 function Subtract(num1, num2) {
     result = num1 - num2;
     display.innerHTML = `${result}`;
     inputOne = result;
-    inputTwo ='';
-    operatorSelected = false;
+    inputTwo = '';
 };
 
 function Multiply(num1, num2) {
     result = num1 * num2;
     display.innerHTML = `${result}`;
     inputOne = result;
-    inputTwo ='';
-    operatorSelected = false;
+    inputTwo = '';
 };
 
 function Divide(num1, num2) {
-    result = num1 / num2;
-    display.innerHTML = `${result}`;
-    inputOne = result
-    inputTwo ='';
-    operatorSelected = false;
+    if (num1 === 0 || num2 === 0) {
+        display.innerHTML = `ERROR`;
+        inputOne = '';
+        inputTwo = '';
+        operator = '';
+        result = '';
+        operatorSelected = false;
+    } else {
+        result = num1 / num2;
+        display.innerHTML = `${result}`;
+        inputOne = result
+        inputTwo = '';
+    }
 };
 
 function Operate(operator, num1, num2) {
-    if (operator === "+") { 
+    if (operator === "+") {
         Add(num1, num2);
     } else if (operator === "-") {
         Subtract(num1, num2);
@@ -223,21 +272,19 @@ function Operate(operator, num1, num2) {
 };
 
 function Display() {
-    if (operatorSelected === false){
-    display.innerHTML = `${inputOne}`;
-    Clear();} else if (operatorSelected === true){
+    if (operatorSelected === false) {
+        display.innerHTML = `${inputOne}`;
+    } else if (operatorSelected === true) {
         display.innerHTML = `${inputTwo}`;
-    Clear();
+
     }
 };
 
-function Clear() {
+function clearDisplay() {
     allclear.addEventListener('click', () => {
         display.innerHTML = '';
         inputOne = '';
         inputTwo = '';
-        parsedInputOne = '';
-        parsedInputTwo = '';
         operator = '';
         result = '';
         operatorSelected = false;
@@ -245,6 +292,7 @@ function Clear() {
 };
 
 
-Keypad();
+numberKeypad();
 operatorKeypad();
 getEquals();
+clearDisplay();

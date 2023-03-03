@@ -38,6 +38,33 @@ body {
   background-color: #e50303;
 }
 
+#equal:active,
+#add:active,
+#subtract:active,
+#multiply:active,
+#divide:active 
+#clear:active,
+#allclear:active,
+.parent>div:active{
+  animation: glow-bounce 0.3s ease-out;
+  
+}
+
+@keyframes glow-bounce {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.7);
+    transform: scale(1);
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
