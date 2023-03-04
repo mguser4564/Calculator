@@ -364,10 +364,21 @@ function operatorKeypad() {
 
 function getEquals() {
     equals.addEventListener('click', () => {
-        Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-        operatorSelected = false;
-        operator = '';
-        equalsPressed = true;
+
+        if (operator == '') {
+
+        } else if (inputTwo === '') {
+            inputTwo = inputOne
+            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            operatorSelected = false;
+            operator = '';
+            equalsPressed = true;
+        } else {
+            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            operatorSelected = false;
+            operator = '';
+            equalsPressed = true;
+        }
     })
 }
 
