@@ -1,41 +1,41 @@
 body {
-  background-color: #001011;
+  background-color: #564256;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 24px;
-  color: #FFFFFC;
+  color: #E8E8E8;
 }
 
 #add,
 #subtract,
 #multiply,
 #divide {
-  background-color: #88b609;
+  background-color: #FC814A;
 }
 
 #add:hover,
 #subtract:hover,
 #multiply:hover,
 #divide:hover {
-  background-color: #98CE00;
+  background-color: #fd9868;
 }
 
 #clear,
 #allclear {
-  background-color: #56b8df;
+  background-color: #FC814A;
 }
 
 #clear:hover,
 #allclear:hover {
-  background-color: #6ed2f9;
+  background-color: #fd9868;
 }
 
 #equal {
-  background-color: #c90404;
+  background-color: #FC814A;
 }
 
 #equal:hover{
-  background-color: #e50303;
+  background-color: #fd9868;
 }
 
 #equal:active,
@@ -71,19 +71,20 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
- 
 }
 
 .title{
-
+  color: #96939B;
   font-size: 16px;
+  padding-right: 265px;
+  padding-bottom: 15px;
 }
 
 .display {
   width: 300px;
   height: 100px;
   border-radius: 5px;
-  background-color: #757780;
+  background-color: #96939B;
   margin-bottom: 10px;
   font-size: 36px;
 }
@@ -203,7 +204,7 @@ body {
 }
 
 .parent>div {
-  background-color: #757780;
+  background-color: #96939B;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -213,5 +214,16 @@ body {
 }
 
 .parent>div:hover {
-  background-color: #aaa;
+  background-color: #BFBFBF;
+}
+
+.Footer{
+  color: #96939B;
+  font-size: 12px;
+  color: #FC814A;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 100px;
 }
