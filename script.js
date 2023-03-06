@@ -200,14 +200,16 @@ function deleteKey(){
     clear.addEventListener('click', () => {
         if (operatorSelected == false) {
             if (equalsPressed === true){
-                inputOne = ''
+                //inputOne = ''
                 inputOne = deleteInput(inputOne);
                 equalsPressed = false;
                 Display();
             } else {
             inputOne = deleteInput(inputOne);
             Display();}
-        } else {
+        } else if (operatorSelected == true && inputTwo == '') {
+            // do nothing
+        } else if (operatorSelected == true) {
             inputTwo = deleteInput(inputTwo);
             Display();
         }
@@ -407,10 +409,14 @@ function getEquals() {
             operator = '';
             equalsPressed = true;
         } else {
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            operatorSelected = false;
-            operator = '';
-            equalsPressed = true;
+            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            if (operationSuccessful) {
+                operatorSelected = false;
+                operator = '';
+                equalsPressed = true;
+            } else {
+                //do nothing
+            }
         }
     })
 }
@@ -458,16 +464,40 @@ function Divide(num1, num2) {
     }
 };
 
-function Operate(operator, num1, num2) {
-    if (operator === "+") {
-        Add(num1, num2);
-    } else if (operator === "-") {
-        Subtract(num1, num2);
-    } else if (operator === "*") {
-        Multiply(num1, num2);
-    } else if (operator === "/") {
-        Divide(num1, num2);
+function Operate(op, num1, num2) {
+    if (isNaN(num2)) {
+        display.innerHTML = `ERROR`;
+        inputOne = '';
+        inputTwo = '';
+        operator = '';
+        result = '';
+        operatorSelected = false;
+        fatalError = false;
+        equalsPressed = false;
+    } else {
+        if (op === "+") {
+            Add(num1, num2);
+        } else if (op === "-") {
+            Subtract(num1, num2);
+        } else if (op === "*") {
+            Multiply(num1, num2);
+        } else if (op === "/") {
+            if (num1 === 0 || num2 === 0) {
+                display.innerHTML = `ERROR`;
+                inputOne = '';
+                inputTwo = '';
+                operator = '';
+                result = '';
+                operatorSelected = false;
+                fatalError = false;
+                equalsPressed = false;
+                return false;
+            } else {
+                Divide(num1, num2);
+            }
+        }
     }
+    return true;
 };
 
 function Display() {
