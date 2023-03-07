@@ -489,7 +489,7 @@ function Operate(op, num1, num2) {
                 operator = '';
                 result = '';
                 operatorSelected = false;
-                fatalError = false;
+                fatalError = true;
                 equalsPressed = false;
                 return false;
             } else {
