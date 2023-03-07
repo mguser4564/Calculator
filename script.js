@@ -258,13 +258,12 @@ function operatorKeypad() {
             // This conditional is for chaining operations together, example 12 + 7 - 5 * 3 = should yield 42
         } else if (operator != "+" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (fatalError === false) {
+            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            if (operationSuccessful) {
                 operator = "+"
-            } else if (fatalError === true) {
-                operator = "";
-                fatalError = false;
-            }
+            } else {
+                //do nothing
+            } 
         } else if (inputOne != '' && inputTwo != '') {
             operator = "+"
             operatorSelected = true;
@@ -299,13 +298,12 @@ function operatorKeypad() {
             equalsPressed = false;
         } else if (operator != "-" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (fatalError === false) {
+            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            if (operationSuccessful) {
                 operator = "-"
-            } else if (fatalError === true) {
-                operator = "";
-                fatalError = false;
-            }
+            } else {
+                //do nothing
+            } 
         } else if (inputOne != '' && inputTwo != '') {
             operator = "-"
             operatorSelected = true;
@@ -339,13 +337,12 @@ function operatorKeypad() {
             equalsPressed = false;
         } else if (operator != "*" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (fatalError === false) {
+            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            if (operationSuccessful) {
                 operator = "*"
-            } else if (fatalError === true) {
-                operator = "";
-                fatalError = false;
-            }
+            } else {
+                //do nothing
+            } 
         } else if (inputOne != '' && inputTwo != '') {
             operator = "*"
             operatorSelected = true;
@@ -379,13 +376,12 @@ function operatorKeypad() {
             equalsPressed = false;
         } else if (operator != "/" && operator != '' && inputTwo != '') {
             blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (fatalError === false) {
+            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+            if (operationSuccessful) {
                 operator = "/"
-            } else if (fatalError === true) {
-                operator = "";
-                fatalError = false;
-            }
+            } else {
+                //do nothing
+            } 
         } else if (inputOne != '' && inputTwo != '') {
             operator = "/"
             operatorSelected = true;
@@ -485,7 +481,7 @@ function Divide(num1, num2) {
 };
 
 function Operate(op, num1, num2) {
-    if (isNaN(num2)) {
+    if (isNaN(num2) || isNaN(num1)) {
         display.innerHTML = `ERROR`;
         inputOne = '';
         inputTwo = '';
@@ -494,6 +490,7 @@ function Operate(op, num1, num2) {
         operatorSelected = false;
         fatalError = false;
         equalsPressed = false;
+        return false;
     } else {
         if (op === "+") {
             Add(num1, num2);
