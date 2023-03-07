@@ -211,22 +211,22 @@ function numberKeyboard() {
     });
     window.addEventListener('keydown', (event) => {
         if (event.key === '.') {
-          if (operatorSelected == false) {
-            if (equalsPressed === true) {
-              inputOne = ''
-              inputOne = addDecimal(inputOne);
-              equalsPressed = false;
-              Display();
+            if (operatorSelected == false) {
+                if (equalsPressed === true) {
+                    inputOne = ''
+                    inputOne = addDecimal(inputOne);
+                    equalsPressed = false;
+                    Display();
+                } else {
+                    inputOne = addDecimal(inputOne);
+                    Display();
+                }
             } else {
-              inputOne = addDecimal(inputOne);
-              Display();
+                inputTwo = addDecimal(inputTwo);
+                Display();
             }
-          } else {
-            inputTwo = addDecimal(inputTwo);
-            Display();
-          }
         }
-      });
+    });
 };
 
 function numberKeypad() {
@@ -416,26 +416,26 @@ function addDecimal(input) {
     return input;
 };
 
-function deleteKeyboard(){
+function deleteKeyboard() {
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Backspace') {
-          if (operatorSelected == false) {
-            if (equalsPressed === true) {
-              inputOne = deleteInput(inputOne);
-              equalsPressed = false;
-              Display();
-            } else {
-              inputOne = deleteInput(inputOne);
-              Display();
+            if (operatorSelected == false) {
+                if (equalsPressed === true) {
+                    inputOne = deleteInput(inputOne);
+                    equalsPressed = false;
+                    Display();
+                } else {
+                    inputOne = deleteInput(inputOne);
+                    Display();
+                }
+            } else if (operatorSelected == true && inputTwo == '') {
+                // do nothing
+            } else if (operatorSelected == true) {
+                inputTwo = deleteInput(inputTwo);
+                Display();
             }
-          } else if (operatorSelected == true && inputTwo == '') {
-            // do nothing
-          } else if (operatorSelected == true) {
-            inputTwo = deleteInput(inputTwo);
-            Display();
-          }
         }
-      });
+    });
 };
 
 function deleteKey() {
@@ -465,88 +465,88 @@ function deleteInput(input) {
 
 };
 
-function operatorKeyboard(){
+function operatorKeyboard() {
     window.addEventListener('keydown', (event) => {
         if (event.key === '+') {
-          if (inputOne === '') {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
-          } else if (operator != "+" && operator != '' && inputTwo != '') {
-            blinkDisplay();
-            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (operationSuccessful) {
-              operator = "+"
+            if (inputOne === '') {
+                display.innerHTML = `ERROR`;
+                inputOne = '';
+                inputTwo = '';
+                operator = '';
+                result = '';
+                operatorSelected = false;
+                fatalError = false;
+                equalsPressed = false;
+            } else if (operator != "+" && operator != '' && inputTwo != '') {
+                blinkDisplay();
+                let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                if (operationSuccessful) {
+                    operator = "+"
+                } else {
+                    // do nothing
+                }
+            } else if (inputOne != '' && inputTwo != '') {
+                operator = "+"
+                operatorSelected = true;
+                blinkDisplay();
+                Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
             } else {
-              // do nothing
+                if (operatorSelected === false) {
+                    operator = "+"
+                    operatorSelected = true;
+                    display.innerHTML = `${inputOne}`;
+                    blinkDisplay();
+                } else if (operatorSelected === true) {
+                    operator = "+"
+                    operatorSelected = false;
+                    display.innerHTML = `${inputOne}`;
+                    blinkDisplay();
+                    Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                }
             }
-          } else if (inputOne != '' && inputTwo != '') {
-            operator = "+"
-            operatorSelected = true;
-            blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-          } else {
-            if (operatorSelected === false) {
-              operator = "+"
-              operatorSelected = true;
-              display.innerHTML = `${inputOne}`;
-              blinkDisplay();
-            } else if (operatorSelected === true) {
-              operator = "+"
-              operatorSelected = false;
-              display.innerHTML = `${inputOne}`;
-              blinkDisplay();
-              Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            }
-          }
         }
-      });
-      window.addEventListener('keydown', (event) => {
+    });
+    window.addEventListener('keydown', (event) => {
         if (event.key === '-') {
-          if (inputOne === '') {
-            display.innerHTML = `ERROR`;
-            inputOne = '';
-            inputTwo = '';
-            operator = '';
-            result = '';
-            operatorSelected = false;
-            fatalError = false;
-            equalsPressed = false;
-          } else if (operator != "-" && operator != '' && inputTwo != '') {
-            blinkDisplay();
-            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (operationSuccessful) {
-              operator = "-"
+            if (inputOne === '') {
+                display.innerHTML = `ERROR`;
+                inputOne = '';
+                inputTwo = '';
+                operator = '';
+                result = '';
+                operatorSelected = false;
+                fatalError = false;
+                equalsPressed = false;
+            } else if (operator != "-" && operator != '' && inputTwo != '') {
+                blinkDisplay();
+                let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                if (operationSuccessful) {
+                    operator = "-"
+                } else {
+                    // do nothing
+                }
+            } else if (inputOne != '' && inputTwo != '') {
+                operator = "-"
+                operatorSelected = true;
+                blinkDisplay();
+                Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
             } else {
-              // do nothing
+                if (operatorSelected === false) {
+                    operator = "-"
+                    operatorSelected = true;
+                    display.innerHTML = `${inputOne}`;
+                    blinkDisplay();
+                } else if (operatorSelected === true) {
+                    operator = "-"
+                    operatorSelected = false;
+                    display.innerHTML = `${inputOne}`;
+                    blinkDisplay();
+                    Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                }
             }
-          } else if (inputOne != '' && inputTwo != '') {
-            operator = "-"
-            operatorSelected = true;
-            blinkDisplay();
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-          } else {
-            if (operatorSelected === false) {
-              operator = "-"
-              operatorSelected = true;
-              display.innerHTML = `${inputOne}`;
-              blinkDisplay();
-            } else if (operatorSelected === true) {
-              operator = "-"
-              operatorSelected = false;
-              display.innerHTML = `${inputOne}`;
-              blinkDisplay();
-              Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            }
-          }
         }
-      });
-      window.addEventListener('keydown', (event) => {
+    });
+    window.addEventListener('keydown', (event) => {
         if (event.key === '*') {
             if (inputOne === '') {
                 display.innerHTML = `ERROR`;
@@ -627,7 +627,7 @@ function operatorKeyboard(){
                 }
             }
         }
-    });    
+    });
 };
 
 function operatorKeypad() {
@@ -792,30 +792,30 @@ function operatorKeypad() {
     });
 };
 
-function getEqualsKeyboard(){
+function getEqualsKeyboard() {
     window.addEventListener('keydown', (event) => {
         if (event.key === "=" || event.key === "Enter") {
-          if (operator == '') {
-      
-          } else if (inputTwo === '') {
-            inputTwo = inputOne
-            Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            operatorSelected = false;
-            operator = '';
-            equalsPressed = true;
-          } else {
-            let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
-            if (operationSuccessful) {
-              operatorSelected = false;
-              operator = '';
-              equalsPressed = true;
+            if (operator == '') {
+
+            } else if (inputTwo === '') {
+                inputTwo = inputOne
+                Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                operatorSelected = false;
+                operator = '';
+                equalsPressed = true;
             } else {
-              //do nothing
+                let operationSuccessful = Operate(operator, parseFloat(inputOne, 10), parseFloat(inputTwo, 10));
+                if (operationSuccessful) {
+                    operatorSelected = false;
+                    operator = '';
+                    equalsPressed = true;
+                } else {
+                    //do nothing
+                }
             }
-          }
         }
-      });
-      
+    });
+
 };
 
 function getEquals() {
@@ -941,16 +941,16 @@ function Display() {
 function clearDisplayKeyboard() {
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-          display.innerHTML = '';
-          inputOne = '';
-          inputTwo = '';
-          operator = '';
-          result = '';
-          operatorSelected = false;
-          fatalError = false;
-          equalsPressed = false;
+            display.innerHTML = '';
+            inputOne = '';
+            inputTwo = '';
+            operator = '';
+            result = '';
+            operatorSelected = false;
+            fatalError = false;
+            equalsPressed = false;
         }
-      });
+    });
 };
 
 function clearDisplay() {
